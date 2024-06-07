@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # task_management_app
 
 A new Flutter project.
@@ -14,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# TaskManagementApp
+>>>>>>> 30978049284fcc7883748a234aebd0843f115db2
