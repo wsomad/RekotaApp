@@ -6,5 +6,5 @@ This is an ongoing personal project that I developed to facilitate my daily task
 
 1. Build on Flutter framework specifically for Android platform
 2. Based on the MVC architecture.
-3. Utilizing SQLite to store task data especially in offline situation.
+3. Utilizing SQLite to store task data locally that can be really helpful during offline situation.
 4. Integrating Firebase services such as Authentication and Realtime Database that can allowing me to use the application from different devices with the same account.
