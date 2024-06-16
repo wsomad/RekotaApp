@@ -1,15 +1,15 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseService {
-  static final DatabaseService _instance = DatabaseService._instance;
+class LocalDatabaseService {
+  static final LocalDatabaseService _instance = LocalDatabaseService._instance;
   static Database? _database;
 
-  factory DatabaseService() {
+  factory LocalDatabaseService() {
     return _instance;
   }
 
-  DatabaseService._internal();
+  LocalDatabaseService._internal();
 
   Future<Database> _getDatabase() async {
     if (_database != null) {

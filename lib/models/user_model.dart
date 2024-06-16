@@ -1,4 +1,6 @@
-class UserModel {
+import 'package:task_management_app/interfaces/base_model.dart';
+
+class UserModel implements BaseModel {
   String? uid;
   String? fullname;
   String? email;
@@ -13,7 +15,7 @@ class UserModel {
     this.role,
   });
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'uid': uid,
       'fullname': fullname,
@@ -23,13 +25,21 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromJson(Map<String, dynamic> fromJson) {
+  factory UserModel.fromMap(Map<String, dynamic> fromMap) {
     return UserModel(
-      uid: fromJson['uid'],
-      fullname: fromJson['fullname'],
-      email: fromJson['email'],
-      password: fromJson['password'],
-      role: fromJson['role'],
+      uid: fromMap['uid'],
+      fullname: fromMap['fullname'],
+      email: fromMap['email'],
+      password: fromMap['password'],
+      role: fromMap['role'],
     );
   }
+  
+  @override
+  Map<String, dynamic> toMapBaseModel() {
+    return toMap();
+  }
+  
+  @override
+  String? id;
 }

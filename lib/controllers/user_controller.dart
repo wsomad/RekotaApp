@@ -1,12 +1,12 @@
 import 'package:task_management_app/models/user_model.dart';
-import 'package:task_management_app/services/database_service.dart';
+import 'package:task_management_app/services/local_database_service.dart';
 
 class UserController {
-  final DatabaseService _databaseService = DatabaseService();
+  final LocalDatabaseService _databaseService = LocalDatabaseService();
 
   Future<void> addUser(UserModel userModel) async {
     try {
-      await _databaseService.insert('users', userModel.toJson());
+      await _databaseService.insert('users', userModel.toMap());
     } catch (e) {
       print('Error in add user: $e');
     }
@@ -16,7 +16,7 @@ class UserController {
     try {
       final List<Map<String, dynamic>> map = await _databaseService.queryAll('users');
       if (map.isNotEmpty) {
-        return UserModel.fromJson(map.firstWhere((element) => element['uid'] == uid));
+        return UserModel.fromMap(map.firstWhere((element) => element['uid'] == uid));
       }
       else {
         return null;
@@ -29,7 +29,7 @@ class UserController {
 
   Future<void> updateUser(UserModel userModel) async {
     try {
-      await _databaseService.update('users', userModel.uid!, userModel.toJson());
+      await _databaseService.update('users', userModel.uid!, userModel.toMap());
     } catch (e) {
       print('Error in update user: $e');
     }

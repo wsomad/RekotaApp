@@ -1,8 +1,8 @@
 import 'package:task_management_app/models/category_model.dart';
-import 'package:task_management_app/services/database_service.dart';
+import 'package:task_management_app/services/local_database_service.dart';
 
 class CategoryController {
-  final DatabaseService _databaseService = DatabaseService();
+  final LocalDatabaseService _databaseService = LocalDatabaseService();
 
   Future<void> addCategory(CategoryModel categoryModel) async {
     try {

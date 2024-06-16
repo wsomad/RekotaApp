@@ -1,8 +1,8 @@
 import 'package:task_management_app/models/note_model.dart';
-import 'package:task_management_app/services/database_service.dart';
+import 'package:task_management_app/services/local_database_service.dart';
 
 class NoteController {
-  final DatabaseService _databaseService = DatabaseService();
+  final LocalDatabaseService _databaseService = LocalDatabaseService();
 
   Future<void> addNote(NoteModel noteModel) async {
     try {
