@@ -1,9 +1,5 @@
 abstract class BaseModel {
-  String? id;
+  String? get id;
   
   Map<String, dynamic> toMapBaseModel();
-
-  factory BaseModel.fromMap(Map<String, dynamic> fromMap) {
-    throw UnimplementedError();
-  }
 }

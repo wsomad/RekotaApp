@@ -1,4 +1,6 @@
-class TaskModel {
+import 'package:task_management_app/interfaces/base_model.dart';
+
+class TaskModel implements BaseModel{
   String? taskID;
   String? title;
   String? description;
@@ -17,7 +19,10 @@ class TaskModel {
     this.isCompleted,
   });
 
-  Map<String, dynamic> toJson() {
+  @override
+  String? get id => taskID;
+
+  Map<String, dynamic> toMap() {
     return {
       'id': taskID,
       'title': title,
@@ -29,7 +34,7 @@ class TaskModel {
     };
   }
 
-  factory TaskModel.fromJson(Map<String, dynamic> fromJson) {
+  factory TaskModel.fromMap(Map<String, dynamic> fromJson) {
     return TaskModel(
       taskID: fromJson['taskID'],
       title: fromJson['title'],
@@ -43,5 +48,10 @@ class TaskModel {
       priority: fromJson['priority'],
       isCompleted: fromJson['isCompleted'],
     );
+  }
+  
+  @override
+  Map<String, dynamic> toMapBaseModel() {
+    return toMap();
   }
 }

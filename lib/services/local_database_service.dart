@@ -92,6 +92,26 @@ class LocalDatabaseService {
     }
   }
 
+  Future<Map<String, dynamic>?> queryById(String table, String id) async {
+    try {
+      final db = await _getDatabase();
+      final List<Map<String, dynamic>> results = await db.query(
+        table,
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+      if (results.isNotEmpty) {
+        return results.first;
+      }
+      else {
+        return null;
+      }
+    } catch (e) {
+      print("Error querying $id from $table: $e");
+      throw Exception("Database query error");
+    }
+  }
+
   Future<void> update(String table, String id, Map<String, dynamic> data) async {
     try {
       final db = await _getDatabase();

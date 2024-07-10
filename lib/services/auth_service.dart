@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:task_management_app/controllers/user_controller.dart';
 import 'package:task_management_app/models/user_model.dart';
-import 'package:task_management_app/services/local_database_service.dart';
-import 'package:task_management_app/services/realtime_database_service.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final RealtimeDatabaseService _realtimeDatabaseService = RealtimeDatabaseService();
-  final LocalDatabaseService _localDatabaseService = LocalDatabaseService();
+  final UserController _userController = UserController();
 
   UserModel? _checkUser(User? user) {
     if (user != null) {
@@ -26,8 +24,7 @@ class AuthService {
 
       if (createUser != null) {
         try {
-          await _realtimeDatabaseService.insert(userModel);
-          await _localDatabaseService.insert('users', userModel.toMap());
+          await _userController.create(userModel, createUser.uid);
         } catch (e) {
           rethrow;
         }

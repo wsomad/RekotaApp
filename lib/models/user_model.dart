@@ -15,6 +15,9 @@ class UserModel implements BaseModel {
     this.role,
   });
 
+  @override
+  String? get id => uid;
+
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
@@ -39,7 +42,4 @@ class UserModel implements BaseModel {
   Map<String, dynamic> toMapBaseModel() {
     return toMap();
   }
-  
-  @override
-  String? id;
 }
