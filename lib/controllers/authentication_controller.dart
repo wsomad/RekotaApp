@@ -1,8 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:task_management_app/models/user_model.dart';
+import 'package:task_management_app/services/auth_service.dart';
 
 class AuthenticationController {
+  final AuthService _authService = AuthService();
+
   static Future<bool> checkIfUserSignedIn() async {
     var connectivityResult = await Connectivity().checkConnectivity();
 
@@ -20,6 +24,32 @@ class AuthenticationController {
       else {
         return false;
       }
+    }
+  }
+
+  Future<void> signUp(String email, String password, String username, String role) async {
+    UserModel userModel = UserModel(
+      username: username,
+      role: role,
+    );
+    try {
+      User? user = await _authService.signUpWithEmailAndPassword(email, password, userModel);
+      if (user != null) {
+        await _saveLocalSignInStatus(true);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> signIn(String email, String password) async {
+    try {
+      User? user = await _authService.signInWithEmailAndPassword(email, password);
+      if (user != null) {
+        await _saveLocalSignInStatus(true);
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 

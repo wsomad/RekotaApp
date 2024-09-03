@@ -2,14 +2,14 @@ import 'package:task_management_app/interfaces/base_model.dart';
 
 class UserModel implements BaseModel {
   String? uid;
-  String? fullname;
+  String? username;
   String? email;
   String? password;
   String? role;
 
   UserModel({
     this.uid,
-    this.fullname,
+    this.username,
     this.email,
     this.password,
     this.role,
@@ -21,7 +21,7 @@ class UserModel implements BaseModel {
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
-      'fullname': fullname,
+      'username': username,
       'email': email,
       'password': password,
       'role': role,
@@ -31,7 +31,7 @@ class UserModel implements BaseModel {
   factory UserModel.fromMap(Map<String, dynamic> fromMap) {
     return UserModel(
       uid: fromMap['uid'],
-      fullname: fromMap['fullname'],
+      username: fromMap['username'],
       email: fromMap['email'],
       password: fromMap['password'],
       role: fromMap['role'],
